@@ -20,6 +20,9 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = new Payment();
         payment.setReservation(reservationRepository2.findById(reservationId).get());
         payment.setPaymentMode(PaymentMode.valueOf(mode));
+        if(amountSent<reservationRepository2.findById(reservationId).get().getNumberOfHours()*reservationRepository2.findById(reservationId).get().getSpot().getPricePerHour()){
+            throw new Exception("Insufficient Amount");
+        }
         return payment;
     }
 }
