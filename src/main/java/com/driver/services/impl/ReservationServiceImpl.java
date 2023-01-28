@@ -55,7 +55,7 @@ public class ReservationServiceImpl implements ReservationService {
                     if(spot.getPricePerHour()<max){
                         spot1.setPricePerHour(spot.getPricePerHour());
                         max=spot.getPricePerHour();
-                        spot1.setSpotType(SpotType.OTHERS);
+                        spot1.setSpotType(SpotType.TWO_WHEELER);
                         check=false;
                     }
                 }
