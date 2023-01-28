@@ -10,7 +10,7 @@ public class Spot {
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
     private int pricePerHour;
-    private boolean occupied;
+    private boolean occupied = true;
     public int getPricePerHour() {
         return pricePerHour;
     }
