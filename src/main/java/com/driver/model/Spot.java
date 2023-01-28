@@ -1,5 +1,6 @@
 package com.driver.model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table
@@ -10,7 +11,7 @@ public class Spot {
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
     private int pricePerHour;
-    private boolean occupied = true;
+    private boolean occupied ;
     public int getPricePerHour() {
         return pricePerHour;
     }
@@ -21,7 +22,7 @@ public class Spot {
     @JoinColumn
     private ParkingLot parkingLot;
     @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
-    private List<Reservation> reservationList;
+    private List<Reservation> reservationList = new ArrayList<>();
     public Spot(){}
     public void setId(int id) {
         this.id = id;
