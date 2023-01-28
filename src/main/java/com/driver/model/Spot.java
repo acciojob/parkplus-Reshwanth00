@@ -9,8 +9,14 @@ public class Spot {
     private int id;
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
-    private int pricePerHouse;
+    private int pricePerHour;
     private boolean occupied;
+    public int getPricePerHour() {
+        return pricePerHour;
+    }
+    public void setPricePerHour(int pricePerHour) {
+        this.pricePerHour = pricePerHour;
+    }
     @ManyToOne
     @JoinColumn
     private ParkingLot parkingLot;
@@ -26,18 +32,12 @@ public class Spot {
     public void setParkingLot(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }
-    public void setPricePerHouse(int pricePerHouse) {
-        this.pricePerHouse = pricePerHouse;
-    }
 
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
     }
     public void setSpotType(SpotType spotType) {
         this.spotType = spotType;
-    }
-    public int getPricePerHouse() {
-        return pricePerHouse;
     }
     public List<Reservation> getReservationList() {
         return reservationList;
