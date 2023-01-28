@@ -23,6 +23,30 @@ public class ReservationServiceImpl implements ReservationService {
     ParkingLotRepository parkingLotRepository3;
     @Override
     public Reservation reserveSpot(Integer userId, Integer parkingLotId, Integer timeInHours, Integer numberOfWheels) throws Exception {
-
+        // need to throw the error
+        User user = userRepository3.findById(userId).get();
+        ParkingLot parkingLot = parkingLotRepository3.findById(parkingLotId).get();
+        Reservation reservation = new Reservation();
+        reservation.setNumberOfHours(timeInHours);
+        user.getReservationList().add(reservation);
+        userRepository3.save(user);
+        List<Spot> spotList = parkingLot.getSpotList();
+        for(Spot spot:spotList){
+            if(numberOfWheels==2 && (spot.getSpotType().equals(SpotType.TWO_WHEELER))){
+               spot.getReservationList().add(reservation);
+                spotRepository3.save(spot);
+                parkingLotRepository3.save(parkingLot);
+            } else if (numberOfWheels==4 && (spot.getSpotType().equals(SpotType.FOUR_WHEELER))) {
+                spot.getReservationList().add(reservation);
+                spotRepository3.save(spot);
+                parkingLotRepository3.save(parkingLot);
+            }
+            else{
+                spot.getReservationList().add(reservation);
+                spotRepository3.save(spot);
+                parkingLotRepository3.save(parkingLot);
+            }
+        }
+        return reservation;
     }
 }

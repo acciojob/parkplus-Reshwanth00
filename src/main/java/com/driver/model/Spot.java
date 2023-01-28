@@ -1,0 +1,62 @@
+package com.driver.model;
+import javax.persistence.*;
+import java.util.List;
+@Entity
+@Table
+public class Spot {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Enumerated(EnumType.STRING)
+    private SpotType spotType;
+    private int pricePerHouse;
+    private boolean occupied;
+    @ManyToOne
+    @JoinColumn
+    private ParkingLot parkingLot;
+    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
+    private List<Reservation> reservationList;
+    public Spot(){}
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+    public void setPricePerHouse(int pricePerHouse) {
+        this.pricePerHouse = pricePerHouse;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+    public void setSpotType(SpotType spotType) {
+        this.spotType = spotType;
+    }
+    public int getPricePerHouse() {
+        return pricePerHouse;
+    }
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+    public int getId() {
+        return id;
+    }
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+    public SpotType getSpotType() {
+        return spotType;
+    }
+    public boolean getOccupied(){
+        return occupied;
+    }
+    public Spot(int pricePerHouse, boolean occupied, SpotType spotType){
+        setOccupied(occupied);
+        setSpotType(spotType);
+        setPricePerHouse(pricePerHouse);
+    }
+}
