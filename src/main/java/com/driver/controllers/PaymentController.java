@@ -28,7 +28,7 @@ public class PaymentController {
                 }
             }
             else{
-                throw new Exception("No enum constant com.driver.model.PaymentMode.upip");
+                throw new Exception("Payment mode not detected");
             }
         }
         catch (Exception e){
