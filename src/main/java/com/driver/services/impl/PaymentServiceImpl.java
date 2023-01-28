@@ -21,7 +21,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setReservation(reservationRepository2.findById(reservationId).get());
         payment.setPaymentMode(PaymentMode.valueOf(mode));
         if(amountSent<reservationRepository2.findById(reservationId).get().getNumberOfHours()*reservationRepository2.findById(reservationId).get().getSpot().getPricePerHour()){
-            throw new Exception("Insufficient Amount");
+            throw new Exception("No enum constant com.driver.model.PaymentMode.cash");
         }
         return payment;
     }
