@@ -31,22 +31,33 @@ public class ReservationServiceImpl implements ReservationService {
         user.getReservationList().add(reservation);
         userRepository3.save(user);
         List<Spot> spotList = parkingLot.getSpotList();
+        int max = Integer.MAX_VALUE;
+        Spot spot1 = new Spot();
         for(Spot spot:spotList){
             if(numberOfWheels==2 && (spot.getSpotType().equals(SpotType.TWO_WHEELER))){
-               spot.getReservationList().add(reservation);
-                spotRepository3.save(spot);
-                parkingLotRepository3.save(parkingLot);
+                if(spot.getPricePerHour()<max){
+                    spot1.setPricePerHour(spot.getPricePerHour());
+                    max=spot.getPricePerHour();
+                    spot1.setSpotType(SpotType.TWO_WHEELER);
+                }
             } else if (numberOfWheels==4 && (spot.getSpotType().equals(SpotType.FOUR_WHEELER))) {
-                spot.getReservationList().add(reservation);
-                spotRepository3.save(spot);
-                parkingLotRepository3.save(parkingLot);
+                if(spot.getPricePerHour()<max){
+                    spot1.setPricePerHour(spot.getPricePerHour());
+                    max=spot.getPricePerHour();
+                    spot1.setSpotType(SpotType.FOUR_WHEELER);
+                }
             }
             else{
-                spot.getReservationList().add(reservation);
-                spotRepository3.save(spot);
-                parkingLotRepository3.save(parkingLot);
+                if(spot.getPricePerHour()<max){
+                    spot1.setPricePerHour(spot.getPricePerHour());
+                    max=spot.getPricePerHour();
+                    spot1.setSpotType(SpotType.OTHERS);
+                }
             }
         }
+        spot1.getReservationList().add(reservation);
+        spotRepository3.save(spot1);
+        parkingLotRepository3.save(parkingLot);
         return reservation;
     }
 }
