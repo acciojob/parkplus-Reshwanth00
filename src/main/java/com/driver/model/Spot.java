@@ -57,6 +57,6 @@ public class Spot {
     public Spot(int pricePerHouse, boolean occupied, SpotType spotType){
         setOccupied(occupied);
         setSpotType(spotType);
-        setPricePerHouse(pricePerHouse);
+        setPricePerHour(pricePerHouse);
     }
 }
