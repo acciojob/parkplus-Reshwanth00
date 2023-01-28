@@ -62,6 +62,8 @@ public class ReservationServiceImpl implements ReservationService {
             }
             if(check)throw new Exception( "Cannot make reservation" );
             spot1.getReservationList().add(reservation);
+            reservation.setSpot(spot1);
+            reservationRepository3.save(reservation);
             spotRepository3.save(spot1);
             parkingLotRepository3.save(parkingLot);
             return reservation;

@@ -23,15 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new Exception("Insufficient Amount");
         }
         if(mode.equals("cash") || mode.equals("card") || mode.equals("upi")){
-            if(mode.equals("cash")){
-                payment.setPaymentMode(PaymentMode.CASH);
-            }
-            if(mode.equals("card")){
-                payment.setPaymentMode(PaymentMode.CARD);
-            }
-            if(mode.equals("upi")){
-                payment.setPaymentMode(PaymentMode.UPI);
-            }
+            payment.setPaymentMode(PaymentMode.valueOf(mode));
         }
         else throw new Exception("Payment mode not detected");
         paymentRepository2.save(payment);
