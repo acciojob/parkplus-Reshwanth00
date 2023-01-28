@@ -43,7 +43,7 @@ public class ReservationServiceImpl implements ReservationService {
                         spot1.setSpotType(SpotType.OTHERS);
                         check=false;
                     }
-                } else if (numberOfWheels>=4 && (spot.getSpotType().equals(SpotType.FOUR_WHEELER) || (spot.getSpotType().equals(SpotType.OTHERS)))) {
+                } else if (numberOfWheels>2 && (spot.getSpotType().equals(SpotType.FOUR_WHEELER) || (spot.getSpotType().equals(SpotType.OTHERS)))) {
                     if(spot.getPricePerHour()<max){
                         spot1.setPricePerHour(spot.getPricePerHour());
                         max=spot.getPricePerHour();
