@@ -18,22 +18,6 @@ public class PaymentController {
         //Attempt a payment of amountSent for reservationId using the given mode ("cASh", "card", or "upi")
         //If the amountSent is less than bill, throw "Insufficient Amount" exception, otherwise update payment attributes
         //Note that the reservationId always exists
-        try{
-            if(mode.equals("cash")||mode.equals("card")||mode.equals("upi")){
-
-                try{
-                    return paymentService.pay(reservationId,amountSent,mode);
-                }
-                catch (Exception e){
-                }
-            }
-            else{
-                throw new Exception("Payment mode not detected");
-            }
-        }
-        catch (Exception e){
-            throw new Exception(e);
-        }
-        return null;
+        return paymentService.pay(reservationId,amountSent,mode);
     }
 }
