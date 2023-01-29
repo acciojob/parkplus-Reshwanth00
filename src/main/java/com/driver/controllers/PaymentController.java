@@ -15,9 +15,6 @@ public class PaymentController {
 
     @PostMapping("/pay")
     public Payment pay(@RequestParam Integer reservationId, @RequestParam Integer amountSent, @RequestParam String mode) throws Exception{
-        //Attempt a payment of amountSent for reservationId using the given mode ("cASh", "card", or "upi")
-        //If the amountSent is less than bill, throw "Insufficient Amount" exception, otherwise update payment attributes
-        //Note that the reservationId always exists
         return paymentService.pay(reservationId,amountSent,mode);
     }
 }
